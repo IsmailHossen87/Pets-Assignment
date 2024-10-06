@@ -11,7 +11,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-        </style>
+
+    </style>
         <!-- font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -81,31 +82,31 @@
                     <button  class="btn bg-btnclr text-white ">Sort by Price</button>
 
                </div>
+              <!-- liading button -->
+               <div class="flex  justify-center">
+                <span class="loading loading-bars hidden loading-lg" id="loading"></span>
+
+               </div>
               <!-- 22222222222222222222{    card container                   }22222222222222222222222 -->
-                   <section class=" mx-auto md:grid md:grid-cols-5">
+                   <section class=" mx-auto md:grid md:grid-cols-5 mt-4">
                     <div class=" md:col-span-4">
                       <div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 " id="card-container">
                       </div>
                     </div>
                   
-                    <div class=" md:col-span-1 h-full">
-                      <div class="p-4 border border-gray-300 rounded-xl grid grid-cols-2 justify-between gap-3">
-                        <p><img class="w-full h-full" src="./images/cat1.png" alt=""></p>
-                        <p><img class="w-full h-full" src="./images/shiba1.png" alt=""></p>
+                    <div id="aa" class=" md:col-span-1 md:ml-4 my-2 md:mt-0 rounded-lg" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                      <div id="createNEWSection" class="rounded-xl grid grid-cols-2 justify-between gap-2 p-2">
+                     
                       </div>
                     </div>
                   </section>
                         
             </div>
             </div>
-              
+              <div id="modal-Container"></div>
+
         
     </main>
-
-
-
-
-
 
 
     
@@ -120,6 +121,15 @@
               <a class="link link-hover">Phone: +31 85 964 47 25</a>
               <a class="link link-hover">Email: info@yourdomain.com</a>
               <a class="link link-hover">Openings hours: 9.00 AM - 5.00 PMt</a>
+              <div class="flex space-x-5">
+                <a href="https://web.facebook.com/" target="_blank"><i class="fa-brands fa-facebook text-blue-600"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-square-x-twitter text-white"></i></a>
+                <a href="https://www.youtube.com/watch?v=LJ1ng6zXDQM"target="_blank"><i class="fa-brands fa-youtube text-red-600"></i></a>
+                <a href="https://www.instagram.com/"target="_blank"><i class="fa-brands fa-instagram"></i></a>
+             
+
+
+              </div>
             </nav>
             <nav>
               <h6 class="footer-title text-white">Useful Links</h6>
