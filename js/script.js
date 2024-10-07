@@ -99,7 +99,7 @@ if(cards.length == 0){
              <button onclick="createNewPart('${image}')" class="btn bg-white border-[#0E7A8126] outline-1">
                <i class="fa-regular fa-thumbs-up text-2xl "></i>
              </button>
-             <button class="btn border-[#0E7A8126]  bg-white text-[18px] font-bold text-[#0E7A81] p-1">Adopt</button>
+             <button onclick="adoptCongratuletios('${petId}')" class="btn border-[#0E7A8126] btn-adopt bg-white text-[18px] font-bold text-[#0E7A81] p-1">Adopt</button>
              <button onclick="createModal('${petId}')" class="btn border-[#0E7A8126] bg-white text-[18px] font-bold text-[#0E7A81] p-1">Details</button>
              <div></div>
            </div>
@@ -111,7 +111,6 @@ if(cards.length == 0){
 }
 
 const createNewPart = (imagee) => {
-  // console.log(id)
   const createNEWSection = document.getElementById('createNEWSection')
   const div = document.createElement('div')
   div.innerHTML=`
@@ -119,11 +118,14 @@ const createNewPart = (imagee) => {
   ` 
   createNEWSection.append(div)
 }
-const createModal = async(ID)=>{
-      const res = await fetch (`https://openapi.programming-hero.com/api/peddy/pet/${ID}`)
+// ---------------------------------------------------------------------
+const createModal = async(petId)=>{
+  console.log(petId)
+      const res = await fetch (`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
       const data = await res.json()
       MODAL(data.petData)
 }
+// create a modal
 const MODAL = (details) =>{
   const {breed,petId,category,date_of_birth,price,image,gender,pet_details,vaccinated_status,pet_name,}= details;
   const modalContainer = document.getElementById('modal-Container')
@@ -171,7 +173,26 @@ const MODAL = (details) =>{
   `
 my_modal_1.showModal()
 }
-// cshorting      ------------
+// create congretuletions Button
+const adoptCongratuletios = (petId) =>{
+  my_modal_2.showModal()
+  const countContainer = document.getElementById('count');
+  let count = 3;
+  const intervalId = setInterval(() => {
+    count--;
+    countContainer.innerHTML = count;
+    if( count <= 0){
+      clearInterval(intervalId);
+      my_modal_2.close()
+      const adoptBtn = document.getElementsByClassName('btn-adopt');
+      for(const btn of adoptBtn){
+       btn.innerHTML = "Adopted";
+       btn.setAttribute('disabled', true)
+      }  
+    }
+  }, 1000);
+  
+}
 const sortPrice =async() =>{
   const response = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
   const data = await response.json();
