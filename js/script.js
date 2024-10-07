@@ -161,9 +161,9 @@ const MODAL = (details) =>{
       <hr/>
       <h1 class="font-bold mt-3">Details Information</h1>
       <p>${pet_details}</p>
-    <div class="text-center rounded-lg mt-2 mx-auto bg-btnclr">
+    <div id="modalBtn" class="text-center  mt-2 mx-auto ">
       <form method="dialog">
-        <div><button class="text-white text-2xl py-3">Close</button></div>
+        <div><button class="text-white rounded-lg w-full bg-btnclr text-2xl py-3">Close</button></div>
       </form>
     </div>
   </div>
@@ -172,7 +172,7 @@ const MODAL = (details) =>{
 my_modal_1.showModal()
 }
 // cshorting      ------------
-const sortContent =async() =>{
+const sortPrice =async() =>{
   const response = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
   const data = await response.json();
   displaySort(data.pets)
