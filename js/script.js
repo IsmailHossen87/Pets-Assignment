@@ -135,22 +135,33 @@ const MODAL = (details) =>{
          </figure>
     <div class="p-2 ">
       <h3 class="text-[20px] font-bold text-[#131313]">${pet_name?pet_name: 'N/A'}      
-      <p class="text-start text-base font-normal text-[#131313B3]">
-        <i class="fa-solid fa-cubes mr-2"></i> Breed:${breed}
-      </p>
-      <p class="text-start text-base font-normal text-[#131313B3]">
-        <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${date_of_birth?date_of_birth: 'N/A'}
-      </p>
-      <p class="text-start text-base font-normal text-[#131313B3]">
-        <i class="fa-solid fa-venus mr-2"></i> Gender: ${gender?gender: "N/A"}
-      </p>
-      <p class="text-start text-base font-normal text-[#131313B3]">
-        <i class="fa-solid fa-dollar-sign mr-2"></i> Price: ${price?price: "N/A"}
-      </p>
+      <div class="flex space-x-9">
+          <div>
+                <p class="text-start text-base font-normal text-[#131313B3]">
+                  <i class="fa-solid fa-cubes mr-2"></i> Breed:${breed}
+                </p>
+               
+                <p class="text-start text-base font-normal text-[#131313B3]">
+                  <i class="fa-solid fa-venus mr-2"></i> Gender: ${gender?gender: "N/A"}
+                </p>
+                <p class="text-start text-base font-normal text-[#131313B3]">
+                  <i class="fa-solid fa-venus mr-2"></i> Gender: ${vaccinated_status?vaccinated_status: "N/A"}
+                </p>
+               
+          </div>
+        <div>
+            <p class="text-start text-base font-normal text-[#131313B3]">
+                  <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${date_of_birth?date_of_birth: 'N/A'}
+            </p>
+             <p class="text-start text-base font-normal text-[#131313B3]">
+                  <i class="fa-solid fa-dollar-sign mr-2"></i> Price: ${price?price: "N/A"}
+            </p>
+        </div>
+      </div>
       <hr/>
       <h1 class="font-bold mt-3">Details Information</h1>
       <p>${pet_details}</p>
-    <div class="text-center rounded-lg  w-11/12 mt-2 mx-auto bg-btnclr">
+    <div class="text-center rounded-lg mt-2 mx-auto bg-btnclr">
       <form method="dialog">
         <div><button class="text-white text-2xl py-3">Close</button></div>
       </form>
