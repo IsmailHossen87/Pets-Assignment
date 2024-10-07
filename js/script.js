@@ -8,10 +8,12 @@ const displayBtn = (pets) => {
     const btnSection = document.getElementById('buttonofanimal')
     const newbtn = document.createElement('div')
     newbtn.innerHTML =`
-    <button id="btn-${pet.id}" onclick="categoryName('${pet?.category || 'defaultCategory'}')" class="btn hover:bg-btnclr hover:rounded-full">
+    <button id="btn-${pet?.category || 'defaultCategory'}" onclick="categoryName('${pet?.category || 'defaultCategory'}')" 
+    class="btn  category-btn">
+    
     <img class="w-8" src="${pet.category_icon}" alt="">
     ${pet.category}
-    </button>
+</button>
     `
     btnSection.append(newbtn)
   
@@ -22,19 +24,32 @@ const categoryName = (categoryname) => {
   document.getElementById('loading').classList.remove('hidden')
   document.getElementById('card-container').classList.add('hidden')
   document.getElementById('aa').classList.add('hidden')
+
+
+  
+    removeBtnBg()
+    const activeBtn = document.getElementById(`btn-${categoryname}`); 
+    activeBtn.classList.add('active')
+    
+    
+
   setTimeout(() => {
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryname}`)
     .then((res) => res.json())
-    .then((peta) =>
-      displayAllCard(peta.data))
-
+    .then((peta) => displayAllCard(peta.data))
     .catch((error) => console.log(error)) 
     document.getElementById('loading').classList.add('hidden')
     document.getElementById('card-container').classList.remove('hidden')
     document.getElementById('aa').classList.remove('hidden')
+ 
   },1500);
 }
-
+const removeBtnBg =() =>{
+  const btns = document.getElementsByClassName('category-btn')
+  for(let btn of btns){
+  btn.classList.remove('active')
+   }
+}
 
 const showAnimal = async () => {
   const response = await fetch(`https://openapi.programming-hero.com/api/peddy/pets`);
@@ -43,7 +58,6 @@ const showAnimal = async () => {
 }
 
 const displayAllCard = (cards) => {
- 
 const cardCcontainer = document.getElementById('card-container')
 cardCcontainer.innerHTML =''
 if(cards.length == 0){
@@ -59,7 +73,7 @@ if(cards.length == 0){
   cardCcontainer.classList.add('grid')
 }
   cards.forEach((card) => {
-    const {breed,petId,category,pete_of_birth,price,image,gender,vaccinated_status,pet_name,}= card;
+    const {breed,petId,category,date_of_birth,price,image,gender,vaccinated_status,pet_name,}= card;
        const div = document.createElement("div")    
        div.innerHTML =`
        <div class="card  bg-base-100  border border-[#0E7A8126] ">
@@ -72,7 +86,7 @@ if(cards.length == 0){
              <i class="fa-solid fa-cubes mr-2"></i> Breed:${breed}
            </p>
            <p class="text-start text-base font-normal text-[#131313B3]">
-             <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${pete_of_birth?pete_of_birth: 'N/A'}
+             <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${date_of_birth?date_of_birth: 'N/A'}
            </p>
            <p class="text-start text-base font-normal text-[#131313B3]">
              <i class="fa-solid fa-venus mr-2"></i> Gender: ${gender?gender: "N/A"}
@@ -95,6 +109,7 @@ if(cards.length == 0){
        cardCcontainer.appendChild(div)
   });
 }
+
 const createNewPart = (imagee) => {
   // console.log(id)
   const createNEWSection = document.getElementById('createNEWSection')
@@ -110,7 +125,7 @@ const createModal = async(ID)=>{
       MODAL(data.petData)
 }
 const MODAL = (details) =>{
-  const {breed,petId,category,pete_of_birth,price,image,gender,pet_details,vaccinated_status,pet_name,}= details;
+  const {breed,petId,category,date_of_birth,price,image,gender,pet_details,vaccinated_status,pet_name,}= details;
   const modalContainer = document.getElementById('modal-Container')
   modalContainer.innerHTML=`
   <dialog id="my_modal_1" class="modal">
@@ -124,7 +139,7 @@ const MODAL = (details) =>{
         <i class="fa-solid fa-cubes mr-2"></i> Breed:${breed}
       </p>
       <p class="text-start text-base font-normal text-[#131313B3]">
-        <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${pete_of_birth?pete_of_birth: 'N/A'}
+        <i class="fa-solid fa-calendar-days mr-2"></i> Birth: ${date_of_birth?date_of_birth: 'N/A'}
       </p>
       <p class="text-start text-base font-normal text-[#131313B3]">
         <i class="fa-solid fa-venus mr-2"></i> Gender: ${gender?gender: "N/A"}
@@ -135,9 +150,9 @@ const MODAL = (details) =>{
       <hr/>
       <h1 class="font-bold mt-3">Details Information</h1>
       <p>${pet_details}</p>
-    <div class="modal-action">
+    <div class="text-center rounded-lg  w-11/12 mt-2 mx-auto bg-btnclr">
       <form method="dialog">
-        <div class="w-full"><button class="btn ">Close</button></div>
+        <div><button class="text-white text-2xl py-3">Close</button></div>
       </form>
     </div>
   </div>
@@ -145,6 +160,18 @@ const MODAL = (details) =>{
   `
 my_modal_1.showModal()
 }
-
+// cshorting      ------------
+const sortContent =async() =>{
+  const response = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
+  const data = await response.json();
+  displaySort(data.pets)
+  pets = data.pets 
+}
+const displaySort = (pets) => {
+  console.log(pets)
+  const sortedPets = pets.sort((a,b)=> b.price - a.price);
+  console.log(sortedPets)
+  displayAllCard(sortedPets)
+}
 showAnimal()
 btnAllSection()
