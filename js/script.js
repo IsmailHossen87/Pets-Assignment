@@ -24,15 +24,9 @@ const categoryName = (categoryname) => {
   document.getElementById('loading').classList.remove('hidden')
   document.getElementById('card-container').classList.add('hidden')
   document.getElementById('aa').classList.add('hidden')
-
-
-  
     removeBtnBg()
     const activeBtn = document.getElementById(`btn-${categoryname}`); 
     activeBtn.classList.add('active')
-    
-    
-
   setTimeout(() => {
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryname}`)
     .then((res) => res.json())
@@ -50,7 +44,6 @@ const removeBtnBg =() =>{
   btn.classList.remove('active')
    }
 }
-
 const showAnimal = async () => {
   const response = await fetch(`https://openapi.programming-hero.com/api/peddy/pets`);
   const peta = await response.json();
@@ -109,16 +102,14 @@ if(cards.length == 0){
        cardCcontainer.appendChild(div)
   });
 }
-
 const createNewPart = (imagee) => {
   const createNEWSection = document.getElementById('createNEWSection')
   const div = document.createElement('div')
   div.innerHTML=`
-  <img class="rounded-md" src="${imagee}" alt="" />
+  <img class="rounded-xl shadow-md p-2" src="${imagee}" alt="" />
   ` 
   createNEWSection.append(div)
 }
-// ---------------------------------------------------------------------
 const createModal = async(petId)=>{
   console.log(petId)
       const res = await fetch (`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
@@ -183,15 +174,9 @@ const adoptCongratuletios = (petId) =>{
     countContainer.innerHTML = count;
     if( count <= 0){
       clearInterval(intervalId);
-      my_modal_2.close()
-      const adoptBtn = document.getElementsByClassName('btn-adopt');
-      for(const btn of adoptBtn){
-       btn.innerHTML = "Adopted";
-       btn.setAttribute('disabled', true)
-      }  
+      my_modal_2.close()  
     }
-  }, 1000);
-  
+  }, 1000); 
 }
 const sortPrice =async() =>{
   const response = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
